@@ -34,12 +34,6 @@ def _find_and_load(name, import_):
 	return module
 _bootstrap._find_and_load = _find_and_load
 
-inner_fromlist = _bootstrap._handle_fromlist
-def _handle_fromlist(module, fromlist, import_):
-	print("_handle_fromlist(", module, fromlist, import_, ")")
-	return inner_fromlist(module, fromlist, import_)
-_bootstrap._handle_fromlist = _handle_fromlist
-
 def caller_module():
 	try: name = inspect.currentframe().f_back.f_back.f_globals["__name__"]
 	except KeyError: raise ValueError("__name__ is not in the global namespace")
